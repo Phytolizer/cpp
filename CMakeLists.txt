@@ -9,11 +9,12 @@ project(
 )
 
 find_package(ICU REQUIRED COMPONENTS data io uc)
+find_package(fmt REQUIRED)
 
 set(SRC main.cpp charset.cpp)
 list(TRANSFORM SRC PREPEND "source/")
 add_executable(cpp ${SRC})
 message("Linking ${ICU_LIBRARIES}")
-target_link_libraries(cpp PRIVATE ${ICU_LIBRARIES})
+target_link_libraries(cpp PRIVATE ${ICU_LIBRARIES} fmt::fmt)
 target_compile_features(cpp PRIVATE cxx_std_20)
 target_include_directories(cpp PRIVATE include)
